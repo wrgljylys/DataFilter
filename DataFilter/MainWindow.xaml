@@ -1,12 +1,12 @@
 ﻿<Window x:Class="DataFilter.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525" AllowDrop="True">
+        Title="MainWindow" Height="700" Width="850" AllowDrop="True">
     <StackPanel>
         <GroupBox Header="唯一条件">
             <CheckBox Name="cbNo4Only" Content="所有数字不带4"></CheckBox>
         </GroupBox>
-        <Expander Header="筛选条件" Name="expander">
+        <Expander Header="筛选条件" Name="expander" IsExpanded="True">
             <StackPanel>
                 <GroupBox Header="数字">
                     <ListBox ItemsSource="{Binding}">
@@ -114,5 +114,15 @@
             <Button Name="btnFilt" Click="btnFilt_Click" Content="筛选" Width="100" Height="25" Margin="5,0"></Button>
             <Button Name="btnExport" Click="btnExport_Click" Content="导出" Width="100" Height="25" Margin="5,0"></Button>
         </StackPanel>
+        <GroupBox Header="过程日志">
+            <DataGrid Name="dgLog" AutoGenerateColumns="False" CanUserAddRows="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="时间" IsReadOnly="True" Binding="{Binding Path=Time}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="类型" IsReadOnly="True" Binding="{Binding Path=LogType}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="信息" IsReadOnly="True" Binding="{Binding Path=Message}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="涉及数据量" IsReadOnly="True" Binding="{Binding Path=DataCount}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
     </StackPanel>
 </Window>

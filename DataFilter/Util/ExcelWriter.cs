@@ -30,6 +30,7 @@ namespace DataFilter.Util
                     IRow row = sheet.CreateRow(i++);
                     row.CreateCell(0).SetCellValue(data);
                 }
+                workbook.Write(fs);
             }
         }
     }
