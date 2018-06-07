@@ -28,7 +28,7 @@ namespace DataFilter.Entity
             Rules.Add(new Rule() { GroupName = "数字", Name = "004", Checked = initChecked, IsAttached = false, Regx = @"\w*?0\D*0\D*4" });
 
             Rules.Add(No4);
-            Rules.Add(new Rule() { GroupName = "数字", Name = "三同", Checked = initChecked, IsAttached = false, Regx = @"\w*?0\w*?0\w*?0|\w*?1\w*?1\w*?1|\w*?2\w*?2\w*?2|\w*?3\w*?3\w*?3|\w*?4\w*?4\w*?4|\w*?5\w*?5\w*?5|\w*?6\w*?6\w*?6|\w*?7\w*?7\w*?7|\w*?8\w*?8\w*?8|\w*?9\w*?9\w*?9" });
+            Rules.Add(new Rule() { GroupName = "数字", Name = "三同", Checked = initChecked, IsAttached = false, Regx = @"\w*?(\d)\w*?\1\w*?\1" });
             Rules.Add(new Rule() { GroupName = "数字", Name = "顺子", Checked = initChecked, IsAttached = false, Regx = @"\w*?0\D*1\D*2|\D*1\D*2\D*3|\D*2\D*3\D*4|\D*3\D*4\D*5|\D*4\D*5\D*6|\D*5\D*6\D*7|\D*6\D*7\D*8|\D*7\D*8\D*9" });
             Rules.Add(new Rule() { GroupName = "数字", Name = "168", Checked = initChecked, IsAttached = false, Regx = @"\w*?1\D*6\D*8" });
             Rules.Add(new Rule() { GroupName = "数字", Name = "518", Checked = initChecked, IsAttached = false, Regx = @"\w*?5\D*1\D*8" });
