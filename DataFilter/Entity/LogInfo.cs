@@ -12,5 +12,7 @@ namespace DataFilter.Entity
         public string Message { get; set; }
         public int DataCount { get; set; }
         public DateTime Time { get; set; }
+        public int RedCount { get; set; }
+        public int BlueCount { get; set; }
     }
 }

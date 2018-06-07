@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace DataFilter
 {
@@ -58,7 +59,7 @@ namespace DataFilter
             logInfoList = new ObservableCollection<LogInfo>();
             dgLog.ItemsSource = logInfoList;
 
-            Log(LogType.导入, fileName, dataList.Count);
+            Log(LogType.导入, fileName, dataList.Count, 0, 0);
         }
 
         private void btnFilt_Click(object sender, RoutedEventArgs e)
@@ -68,6 +69,8 @@ namespace DataFilter
                 no4Only();
                 return;
             }
+
+            filterByRules();
         }
 
         private void no4Only()
@@ -79,7 +82,59 @@ namespace DataFilter
                 else
                     blueList.Add(data);
             }
-            Log(LogType.筛选, "唯一条件 所有数字不带4", redList.Count);
+            Log(LogType.筛选, "唯一条件 所有数字不带4", redList.Count, redList.Count, blueList.Count);
+        }
+
+        private void filterByRules()
+        {
+            blueList = new List<string>(dataList);
+            bool isNo4 = false;
+            foreach (Rule rule in Rule.Rules)
+            {
+                if (!rule.Checked || rule.IsAttached)
+                    continue;
+                if (rule.Checked && rule == Rule.No4)
+                {
+                    isNo4 = true;
+                    continue;
+                }
+
+                List<string> temp = new List<string>(blueList);
+                int count = 0;
+                foreach (string data in temp)
+                {
+                    if (isNo4 && data.IndexOf('4') >= 0)
+                        continue;
+
+                    bool attPass = true;
+                    
+                    if (rule.Children != null)
+                    {
+                        List<Rule> children = (from r in rule.Children
+                                               where r.Checked
+                                               select r).ToList();
+                        attPass = children.Count <= 0;
+                        foreach (Rule r in children)
+                        {
+                            if (data.IndexOf(r.Regx) > 0)
+                            {
+                                attPass = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (Regex.IsMatch(data, rule.Regx, RegexOptions.IgnoreCase) && attPass)
+                    {
+                        if (!redList.Contains(data))
+                            redList.Add(data);
+                        blueList.Remove(data);
+                        ++count;
+                    }
+                }
+
+                Log(LogType.筛选, rule.Name, count, redList.Count, blueList.Count);
+            }
         }
 
         private void btnExport_Click(object sender, RoutedEventArgs e)
@@ -95,19 +150,19 @@ namespace DataFilter
             {
                 fileName = filePath + "红" + redList[0] + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".xlsx";
                 new ExcelWriter().Write(fileName, redList);
-                Log(LogType.导出, fileName, redList.Count);
+                Log(LogType.导出, fileName, redList.Count, redList.Count, blueList.Count);
             }
             if (blueList.Count > 0)
             {
                 fileName = filePath + "蓝" + blueList[0] + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".xlsx";
                 new ExcelWriter().Write(fileName, blueList);
-                Log(LogType.导出, fileName, blueList.Count);
+                Log(LogType.导出, fileName, blueList.Count, redList.Count, blueList.Count);
             }
         }
 
-        private void Log(LogType logType, string message, int dataCount)
+        private void Log(LogType logType, string message, int dataCount, int redCount, int blueCount)
         {
-            logInfoList.Add(new LogInfo() { Time = DateTime.Now, LogType = logType, Message = message, DataCount = dataCount });
+            logInfoList.Add(new LogInfo() { Time = DateTime.Now, LogType = logType, Message = message, DataCount = dataCount, RedCount = redCount, BlueCount = blueCount });
         }
     }
 }
