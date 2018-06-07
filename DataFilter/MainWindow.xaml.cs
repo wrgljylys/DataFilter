@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.ComponentModel;
 
 namespace DataFilter
 {
@@ -28,11 +29,19 @@ namespace DataFilter
         private List<string> redList;
         private List<string> blueList;
         private ObservableCollection<LogInfo> logInfoList;
+        BackgroundWorker worker;
         public MainWindow()
         {
             InitializeComponent();
             Loaded += MainWindow_Loaded;
             Drop += MainWindow_Drop;
+            Closing += MainWindow_Closing;
+        }
+
+        void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            if (worker != null)
+                worker.CancelAsync();
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -70,7 +79,11 @@ namespace DataFilter
                 return;
             }
 
-            filterByRules();
+            worker = new BackgroundWorker();
+            worker.WorkerSupportsCancellation = true;
+            worker.DoWork += worker_DoWork;
+            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            worker.RunWorkerAsync(this);
         }
 
         private void no4Only()
@@ -85,7 +98,7 @@ namespace DataFilter
             Log(LogType.筛选, "唯一条件 所有数字不带4", redList.Count, redList.Count, blueList.Count);
         }
 
-        private void filterByRules()
+        public void filterByRules()
         {
             blueList = new List<string>(dataList);
             bool isNo4 = false;
@@ -133,8 +146,79 @@ namespace DataFilter
                     }
                 }
 
-                Log(LogType.筛选, rule.Name, count, redList.Count, blueList.Count);
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    Log(LogType.筛选, rule.Name, count, redList.Count, blueList.Count);
+                }));  
             }
+        }
+
+        void worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            List<string> temp;
+            if (!string.IsNullOrEmpty(tbNum.Text))
+            {
+                string[] regStrs = tbNum.Text.Split(' ');
+                StringBuilder sb = new StringBuilder();
+                foreach (string str in regStrs)
+                {
+                    sb.Append(@"\w*?").Append(str.Trim()).Append("|");
+                }
+                sb.Remove(sb.Length - 1, 1);
+
+                temp = new List<string>(blueList);
+                int count = 0;
+                foreach (string data in temp)
+                {
+                    if (Regex.IsMatch(data, sb.ToString(), RegexOptions.IgnoreCase))
+                    {
+                        if (!redList.Contains(data))
+                            redList.Add(data);
+                        blueList.Remove(data);
+                        ++count;
+                    }
+                }
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    Log(LogType.筛选, "自定义数字", count, redList.Count, blueList.Count);
+                })); 
+            }
+
+            if (!string.IsNullOrEmpty(tbNum.Text))
+            {
+                string[] regStrs = tbNum.Text.Split(' ');
+                StringBuilder sb = new StringBuilder();
+                foreach (string str in regStrs)
+                {
+                    sb.Append(@"\w*?").Append(str.Trim()).Append("|");
+                }
+                sb.Remove(sb.Length - 1, 1);
+
+                temp = new List<string>(blueList);
+                int count = 0;
+                foreach (string data in temp)
+                {
+                    if (Regex.IsMatch(data, sb.ToString(), RegexOptions.IgnoreCase))
+                    {
+                        if (!redList.Contains(data))
+                            redList.Add(data);
+                        blueList.Remove(data);
+                        ++count;
+                    }
+                }
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    Log(LogType.筛选, "自定义字母", count, redList.Count, blueList.Count);
+                }));
+            }
+
+            MessageBox.Show("筛选完成");
+        }
+
+        void worker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            MainWindow mainWindow = e.Argument as MainWindow;
+            mainWindow.filterByRules();
         }
 
         private void btnExport_Click(object sender, RoutedEventArgs e)
