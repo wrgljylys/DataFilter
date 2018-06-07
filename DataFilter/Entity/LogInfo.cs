@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataFilter.Entity
 {
-    public enum LogType { 导入, 筛选, 导出 }
+    public enum LogType { 导入, 筛选, 导出, 线程启动 }
     public class LogInfo
     {
         public LogType LogType { get; set; }

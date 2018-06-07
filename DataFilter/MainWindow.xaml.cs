@@ -29,6 +29,8 @@ namespace DataFilter
         private List<string> redList;
         private List<string> blueList;
         private ObservableCollection<LogInfo> logInfoList;
+
+        List<MythreadData> threadList;
         BackgroundWorker worker;
         public MainWindow()
         {
@@ -79,11 +81,25 @@ namespace DataFilter
                 return;
             }
 
+            threadList = new List<MythreadData>();
+            int count = 0;
+            int i = 0;
+            while (count < dataList.Count)
+            {
+                MythreadData thread = new MythreadData(this, ++i, new List<string>(dataList.GetRange(count, count + 25000 <= dataList.Count ? 25000 : dataList.Count - count)), tbNum.Text, tbChar.Text);
+                threadList.Add(thread);
+                Log(LogType.线程启动, "线程：" + i, dataList.Count, 0, thread.BlueList.Count);
+                thread.Worker.RunWorkerAsync(thread);
+                count += thread.BlueList.Count;
+            }
+
+            /*
             worker = new BackgroundWorker();
             worker.WorkerSupportsCancellation = true;
             worker.DoWork += worker_DoWork;
             worker.RunWorkerCompleted += worker_RunWorkerCompleted;
             worker.RunWorkerAsync(this);
+             * */
         }
 
         private void no4Only()
@@ -223,11 +239,29 @@ namespace DataFilter
 
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {
+            if (threadList != null)
+            {
+                foreach (MythreadData thread in threadList)
+                {
+                    if (thread.Worker.IsBusy)
+                    {
+                        MessageBox.Show("尚有线程未完成工作，请等待");
+                        return;
+                    }
+                }
+            }
+
             string filePath = AppDomain.CurrentDomain.BaseDirectory + "Export\\";
             string fileName;
             if (!Directory.Exists(filePath))
             {
                 Directory.CreateDirectory(filePath);
+            }
+
+            foreach (MythreadData thread in threadList)
+            {
+                redList.AddRange(thread.RedList);
+                blueList.AddRange(thread.BlueList);
             }
 
             if (redList.Count > 0)
@@ -244,7 +278,7 @@ namespace DataFilter
             }
         }
 
-        private void Log(LogType logType, string message, int dataCount, int redCount, int blueCount)
+        public void Log(LogType logType, string message, int dataCount, int redCount, int blueCount)
         {
             logInfoList.Add(new LogInfo() { Time = DateTime.Now, LogType = logType, Message = message, DataCount = dataCount, RedCount = redCount, BlueCount = blueCount });
         }

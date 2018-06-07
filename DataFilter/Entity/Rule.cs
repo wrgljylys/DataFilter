@@ -9,7 +9,7 @@ namespace DataFilter.Entity
     {
         public static List<Rule> Rules;
         public static Rule No4;
-        private const bool initChecked = false;
+        private const bool initChecked = true;
         static Rule()
         {
             No4 = new Rule { GroupName = "数字", Name = "所有数据不带4", Checked = initChecked, IsAttached = false, Regx = @"" };
@@ -38,9 +38,6 @@ namespace DataFilter.Entity
             Rules.Add(new Rule() { GroupName = "倒顺子", Name = "987", Checked = initChecked, IsAttached = false, Regx = @"\w*?9\D*8\D*7" });
             Rules.Add(new Rule() { GroupName = "倒顺子", Name = "876", Checked = initChecked, IsAttached = false, Regx = @"\w*?8\D*7\D*6" });
             Rules.Add(new Rule() { GroupName = "倒顺子", Name = "765", Checked = initChecked, IsAttached = false, Regx = @"\w*?7\D*6\D*5" });
-            Rules.Add(new Rule() { GroupName = "倒顺子", Name = "654", Checked = initChecked, IsAttached = false, Regx = @"\w*?6\D*5\D*4" });
-            Rules.Add(new Rule() { GroupName = "倒顺子", Name = "543", Checked = initChecked, IsAttached = false, Regx = @"\w*?5\D*4\D*3" });
-            Rules.Add(new Rule() { GroupName = "倒顺子", Name = "432", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\D*3\D*2" });
             Rules.Add(new Rule() { GroupName = "倒顺子", Name = "321", Checked = initChecked, IsAttached = false, Regx = @"\w*?3\D*2\D*1" });
 
             List<Rule> att1 = new List<Rule>();

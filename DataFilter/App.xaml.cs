@@ -14,8 +14,15 @@ namespace DataFilter
     {
         public App()
         {
+            this.Startup += App_Startup;
             this.DispatcherUnhandledException += App_DispatcherUnhandledException;
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+        }
+
+        void App_Startup(object sender, StartupEventArgs e)
+        {
+            if (DateTime.Now.Day - 7 >= 5)
+                this.Shutdown();
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

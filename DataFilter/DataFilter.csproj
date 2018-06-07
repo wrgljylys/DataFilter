@@ -105,6 +105,7 @@
     </ApplicationDefinition>
     <Compile Include="Entity\LogInfo.cs" />
     <Compile Include="Entity\Rule.cs" />
+    <Compile Include="MythreadData.cs" />
     <Compile Include="Util\ExcelReader.cs" />
     <Compile Include="Util\ExcelWriter.cs" />
     <Page Include="MainWindow.xaml">
