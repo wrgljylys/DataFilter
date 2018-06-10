@@ -261,10 +261,13 @@ namespace DataFilter
                 Directory.CreateDirectory(filePath);
             }
 
-            foreach (MythreadData thread in threadList)
+            if (threadList != null)
             {
-                redList.AddRange(thread.RedList);
-                blueList.AddRange(thread.BlueList);
+                foreach (MythreadData thread in threadList)
+                {
+                    redList.AddRange(thread.RedList);
+                    blueList.AddRange(thread.BlueList);
+                }
             }
 
             if (redList.Count > 0)
