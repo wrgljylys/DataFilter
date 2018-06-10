@@ -56,6 +56,17 @@ namespace DataFilter
                                  where rule.GroupName == gb.Header.ToString()
                                  select rule).ToList(); 
             }
+
+            /*
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 9; i++)
+            {
+
+                sb.Append(@"|\w*?\[" + (9 - i) + @"]\D*(\d)\w*?\[" + (8-i) +@"]\D*\" + (i + 10));
+            }
+            string str = sb.ToString();
+            MessageBox.Show(str);
+             * */
         }
 
 
@@ -92,14 +103,6 @@ namespace DataFilter
                 thread.Worker.RunWorkerAsync(thread);
                 count += thread.BlueList.Count;
             }
-
-            /*
-            worker = new BackgroundWorker();
-            worker.WorkerSupportsCancellation = true;
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            worker.RunWorkerAsync(this);
-             * */
         }
 
         private void no4Only()
