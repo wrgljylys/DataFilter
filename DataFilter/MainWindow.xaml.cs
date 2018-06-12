@@ -86,13 +86,14 @@ namespace DataFilter
 
         private void btnFilt_Click(object sender, RoutedEventArgs e)
         {
+            threadList = new List<MythreadData>();
+
             if (cbNo4Only.IsChecked == true)
             {
                 no4Only();
                 return;
             }
-
-            threadList = new List<MythreadData>();
+  
             int count = 0;
             int i = 0;
             while (count < dataList.Count)
