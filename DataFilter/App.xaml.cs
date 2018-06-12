@@ -21,8 +21,11 @@ namespace DataFilter
 
         void App_Startup(object sender, StartupEventArgs e)
         {
-            if (DateTime.Now.Day - 7 >= 5)
-                this.Shutdown();
+            DateTime dt = new DateTime(2018, 6, 17);
+            if (DateTime.Now > dt)
+            {
+                Shutdown();
+            }
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
