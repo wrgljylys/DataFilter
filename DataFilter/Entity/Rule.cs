@@ -45,17 +45,16 @@ namespace DataFilter.Entity
             att1.Add(new Rule() { GroupName = "对子", Name = "含8", Checked = initChecked, IsAttached = true, Regx = "8" });
             att1.Add(new Rule() { GroupName = "对子", Name = "含9", Checked = initChecked, IsAttached = true, Regx = "9" });
             att1.Add(new Rule() { GroupName = "对子", Name = "含0", Checked = initChecked, IsAttached = true, Regx = "0" });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "00", Checked = initChecked, IsAttached = false, Regx = @"\w*?0\D*0", Children = att1 });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "11", Checked = initChecked, IsAttached = false, Regx = @"\w*?1\D*1", Children = att1 });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "22", Checked = initChecked, IsAttached = false, Regx = @"\w*?2\D*2", Children = att1 });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "33", Checked = initChecked, IsAttached = false, Regx = @"\w*?3\D*3", Children = att1 });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "44", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\D*4", Children = att1 });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "55", Checked = initChecked, IsAttached = false, Regx = @"\w*?5\D*5", Children = att1 });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "66", Checked = initChecked, IsAttached = false, Regx = @"\w*?6\D*6", Children = att1 });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "77", Checked = initChecked, IsAttached = false, Regx = @"\w*?7\D*7", Children = att1 });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "88", Checked = initChecked, IsAttached = false, Regx = @"\w*?8\D*8", Children = att1 });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "99", Checked = initChecked, IsAttached = false, Regx = @"\w*?9\D*9", Children = att1 });
-            Rules.Add(new Rule() { GroupName = "对子", Name = "00", Checked = initChecked, IsAttached = false, Regx = @"\w*?0\D*0", Children = att1 });
+            Rules.Add(new Rule() { GroupName = "对子", Name = "00", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?0\D*0|\w*?0\D*0\w*?{1}", Children = att1 });
+            Rules.Add(new Rule() { GroupName = "对子", Name = "11", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?1\D*1|\w*?1\D*1\w*?{1}", Children = att1 });
+            Rules.Add(new Rule() { GroupName = "对子", Name = "22", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?2\D*2|\w*?2\D*2\w*?{1}", Children = att1 });
+            Rules.Add(new Rule() { GroupName = "对子", Name = "33", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?3\D*3|\w*?3\D*3\w*?{1}", Children = att1 });
+            Rules.Add(new Rule() { GroupName = "对子", Name = "44", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?4\D*4|\w*?4\D*4\w*?{1}", Children = att1 });
+            Rules.Add(new Rule() { GroupName = "对子", Name = "55", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?5\D*5|\w*?5\D*5\w*?{1}", Children = att1 });
+            Rules.Add(new Rule() { GroupName = "对子", Name = "66", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?6\D*6|\w*?6\D*6\w*?{1}", Children = att1 });
+            Rules.Add(new Rule() { GroupName = "对子", Name = "77", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?7\D*7|\w*?7\D*7\w*?{1}", Children = att1 });
+            Rules.Add(new Rule() { GroupName = "对子", Name = "88", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?8\D*8|\w*?8\D*8\w*?{1}", Children = att1 });
+            Rules.Add(new Rule() { GroupName = "对子", Name = "99", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?9\D*9|\w*?9\D*9\w*?{1}", Children = att1 });
             Rules.AddRange(att1);
 
             List<Rule> att2 = new List<Rule>();

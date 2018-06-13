@@ -120,9 +120,17 @@ namespace DataFilter
                                                where r.Checked
                                                select r).ToList();
                         attPass = children.Count <= 0;
+                        bool needFormat = rule.Regx.Contains("{0}");
                         foreach (Rule r in children)
                         {
-                            if (data.IndexOf(r.Regx) > 0)
+                            if(!r.Checked)
+                                continue;
+
+                            if (needFormat)
+                            {
+                                string rex = string.Format(rule.Regx, reu)
+                            }
+                            else if (data.IndexOf(r.Regx) > 0)
                             {
                                 attPass = true;
                                 break;
