@@ -113,6 +113,7 @@ namespace DataFilter
                         continue;
 
                     bool attPass = true;
+                    string rex = rule.Regx;
 
                     if (rule.Children != null)
                     {
@@ -121,6 +122,8 @@ namespace DataFilter
                                                select r).ToList();
                         attPass = children.Count <= 0;
                         bool needFormat = rule.Regx.Contains("{0}");
+                        StringBuilder sb = new StringBuilder();
+                        sb.Append("[");
                         foreach (Rule r in children)
                         {
                             if(!r.Checked)
@@ -128,17 +131,26 @@ namespace DataFilter
 
                             if (needFormat)
                             {
-                                string rex = string.Format(rule.Regx, reu)
+                                sb.Append(r.Regx);
                             }
                             else if (data.IndexOf(r.Regx) > 0)
                             {
                                 attPass = true;
                                 break;
                             }
+                            else
+                                attPass = false;
+                        }
+                        sb.Append("]");
+                        if (sb.Length <= 2)
+                            sb = new StringBuilder();
+                        if (needFormat)
+                        {
+                            rex = string.Format(rule.Regx, sb, sb);
                         }
                     }
 
-                    if (Regex.IsMatch(data, rule.Regx, RegexOptions.IgnoreCase) && attPass)
+                    if (Regex.IsMatch(data, rex, RegexOptions.IgnoreCase) && attPass)
                     {
                         if (!RedList.Contains(data))
                             RedList.Add(data);

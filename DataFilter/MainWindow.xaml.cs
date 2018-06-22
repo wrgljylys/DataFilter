@@ -235,11 +235,13 @@ namespace DataFilter
             MessageBox.Show("筛选完成");
         }
 
+        /*
         void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             MainWindow mainWindow = e.Argument as MainWindow;
             mainWindow.filterByRules();
         }
+         */
 
         private void btnExport_Click(object sender, RoutedEventArgs e)
         {

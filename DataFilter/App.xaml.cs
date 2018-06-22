@@ -21,7 +21,7 @@ namespace DataFilter
 
         void App_Startup(object sender, StartupEventArgs e)
         {
-            DateTime dt = new DateTime(2018, 6, 17);
+            DateTime dt = new DateTime(2018, 6, 27);
             if (DateTime.Now > dt)
             {
                 Shutdown();
