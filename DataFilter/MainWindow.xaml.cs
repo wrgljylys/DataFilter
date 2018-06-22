@@ -275,13 +275,13 @@ namespace DataFilter
 
             if (redList.Count > 0)
             {
-                fileName = filePath + "红" + redList[0] + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".xlsx";
+                fileName = filePath + "红" + redList[0] + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx";
                 new ExcelWriter().Write(fileName, redList);
                 Log(LogType.导出, fileName, redList.Count, redList.Count, blueList.Count);
             }
             if (blueList.Count > 0)
             {
-                fileName = filePath + "蓝" + blueList[0] + "_" + DateTime.Now.ToString("yyyyMMdd_hhmmss") + ".xlsx";
+                fileName = filePath + "蓝" + blueList[0] + "_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".xlsx";
                 new ExcelWriter().Write(fileName, blueList);
                 Log(LogType.导出, fileName, blueList.Count, redList.Count, blueList.Count);
             }
