@@ -2,43 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows;
 
 namespace DataFilter.Entity
 {
-    public class Rule
+    public class Rule : DependencyObject
     {
+        public static DependencyProperty CheckedProperty;
         public static List<Rule> Rules;
         public static Rule No4;
-        private const bool initChecked = true;
+        private const bool initChecked = false;
         static Rule()
         {
-            No4 = new Rule { GroupName = "数字", Name = "所有数据不带4", Checked = initChecked, IsAttached = false, Regx = @"" };
+            CheckedProperty = DependencyProperty.Register("Checked1", typeof(bool), typeof(Rule));
+            No4 = new Rule { GroupName = "数字2", Name = "所有数据不带4", Checked = initChecked, IsAttached = false, Regx = @"" };
             Rules = new List<Rule>();
-            Rules.Add(new Rule() { GroupName = "数字", Name = "444", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\w*?4\w*?4" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "456", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\D*5\D*6" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "345", Checked = initChecked, IsAttached = false, Regx = @"\w*?3\D*4\D*5" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "234", Checked = initChecked, IsAttached = false, Regx = @"\w*?2\D*3\D*4" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "654", Checked = initChecked, IsAttached = false, Regx = @"\w*?6\D*5\D*4" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "543", Checked = initChecked, IsAttached = false, Regx = @"\w*?5\D*4\D*3" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "432", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\D*3\D*2" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "488", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\D*8\D*8" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "466", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\D*6\D*6" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "499", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\D*9\D*9" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "400", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\D*0\D*0" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "004", Checked = initChecked, IsAttached = false, Regx = @"\w*?0\D*0\D*4" });
-
+            Rules.Add(new Rule() { GroupName = "数字1", Name = "三同", Checked = initChecked, IsAttached = false, Regx = @"\w*?(\d)\w*?\1\w*?\1" });
+            Rules.Add(new Rule() { GroupName = "数字1", Name = "特顺", Checked = initChecked, IsAttached = false, Regx = @"\w*?0\D*1\D*2\D*3\D*4|\W*?1\D*2\D*3\D*4\D*5|\w*?2\D*3\D*4\D*5\D*6|\w*?2\D*3\D*4\D*5\D*6|\w*?3\D*4\D*5\D*6\D*7|\w*?4\D*5\D*6\D*7\D*8|\w*?5\D*6\D*7\D*8\D*9|\w*?6\D*7\D*8\D*9\D*0|\w*?9\D*8\D*7\D*6\D*5|\w*?8\D*7\D*6\D*5\D*4|\w*?7\D*6\D*5\D*4\D*3|\w*?6\D*5\D*4\D*3\D*2|\w*?5\D*4\D*3\D*2\D*1|\w*?4\D*3\D*2\D*1\D*0|\w*?0\D*1\D*2\D*3|\w*?1\D*2\D*3\D*4|\w*?2\D*3\D*4\D*5|\w*?3\D*4\D*5\D*6|\w*?4\D*5\D*6\D*7|\w*?5\D*6\D*7\D*8|\w*?6\D*7\D*8\D*9|\w*?7\D*8\D*9\D*0|\w*?9\D*8\D*7\D*6|\w*?8\D*7\D*6\D*5|\w*?7\D*6\D*5\D*4|\w*?6\D*5\D*4\D*3|\w*?5\D*4\D*3\D*2|\w*?4\D*3\D*2\D*1|\w*?3\D*2\D*1\D*0" });
+            Rules.Add(new Rule() { GroupName = "数字1", Name = "顺子", Checked = initChecked, IsAttached = false, Regx = @"\w*?1\D*2\D*3|\w*?5\D*6\D*7|\w*?6\D*7\D*8|\w*?7\D*8\D*9" });
+            Rules.Add(new Rule() { GroupName = "数字1", Name = "带4顺子", Checked = initChecked, IsAttached = false, Regx = @"\w*?2\D*3\D*4|\w*?3\D*4\D*5|\w*?4\D*5\D*6" }); 
+            Rules.Add(new Rule() { GroupName = "数字1", Name = "倒顺", Checked = initChecked, IsAttached = false, Regx = @"\w*?3\D*2\D*1|\w*?7\D*6\D*5|\w*?8\D*7\D*6|\w*?9\D*8\D*7" });
+            Rules.Add(new Rule() { GroupName = "数字1", Name = "带4倒顺", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\D*3\D*2|\w*?5\D*4\D*3|\w*?6\D*5\D*4" });
+            Rules.Add(new Rule() { GroupName = "数字1", Name = "0689对子", Checked = initChecked, IsAttached = false, Regx = @"\w*?0\D*0|\w*?6\D*6|\w*?8\D*8|\w*?9\D*9" });
+            Rules.Add(new Rule() { GroupName = "数字1", Name = "168、520", Checked = initChecked, IsAttached = false, Regx = @"\w*?1\D*6\D*8|\w*?5\D*2\D*0" });
+            Rules.Add(new Rule() { GroupName = "数字1", Name = "0689ABA", Checked = initChecked, IsAttached = false, Regx = @"-----------" });
+            Rules.Add(new Rule() { GroupName = "数字1", Name = "尾数689", Checked = initChecked, IsAttached = false, Regx = @"-----------" });
             Rules.Add(No4);
-            Rules.Add(new Rule() { GroupName = "数字", Name = "三同", Checked = initChecked, IsAttached = false, Regx = @"\w*?(\d)\w*?\1\w*?\1" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "顺子", Checked = initChecked, IsAttached = false, Regx = @"\w*?\D*1\D*2\D*3|\w*?\D*2\D*3\D*4|\w*?\D*3\D*4\D*5|\w*?\D*4\D*5\D*6|\w*?\D*5\D*6\D*7|\w*?\D*6\D*7\D*8|\w*?\D*7\D*8\D*9" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "168", Checked = initChecked, IsAttached = false, Regx = @"\w*?1\D*6\D*8" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "518", Checked = initChecked, IsAttached = false, Regx = @"\w*?5\D*1\D*8" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "520", Checked = initChecked, IsAttached = false, Regx = @"\w*?5\D*2\D*0" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "258", Checked = initChecked, IsAttached = false, Regx = @"\w*?2\D*5\D*8" });
-            Rules.Add(new Rule() { GroupName = "数字", Name = "369", Checked = initChecked, IsAttached = false, Regx = @"\w*?3\D*6\D*9" });
-            Rules.Add(new Rule() { GroupName = "倒顺子", Name = "987", Checked = initChecked, IsAttached = false, Regx = @"\w*?9\D*8\D*7" });
-            Rules.Add(new Rule() { GroupName = "倒顺子", Name = "876", Checked = initChecked, IsAttached = false, Regx = @"\w*?8\D*7\D*6" });
-            Rules.Add(new Rule() { GroupName = "倒顺子", Name = "765", Checked = initChecked, IsAttached = false, Regx = @"\w*?7\D*6\D*5" });
-            Rules.Add(new Rule() { GroupName = "倒顺子", Name = "321", Checked = initChecked, IsAttached = false, Regx = @"\w*?3\D*2\D*1" });
+            Rules.Add(new Rule() { GroupName = "数字3", Name = "顺子", Checked = initChecked, IsAttached = false, Regx = @"\w*?1\D*2\D*3|\w*?5\D*6\D*7|\w*?6\D*7\D*8|\w*?7\D*8\D*9" });
+            Rules.Add(new Rule() { GroupName = "数字3", Name = "倒顺", Checked = initChecked, IsAttached = false, Regx = @"\w*?3\D*2\D*1|\w*?7\D*6\D*5|\w*?8\D*7\D*6|\w*?9\D*8\D*7" });
+            Rules.Add(new Rule() { GroupName = "数字3", Name = "168", Checked = initChecked, IsAttached = false, Regx = @"\w*?1\D*6\D*8" });            
+            Rules.Add(new Rule() { GroupName = "数字3", Name = "520", Checked = initChecked, IsAttached = false, Regx = @"\w*?5\D*2\D*0" });
+            Rules.Add(new Rule() { GroupName = "数字3", Name = "518", Checked = initChecked, IsAttached = false, Regx = @"\w*?5\D*1\D*8" });
+            Rules.Add(new Rule() { GroupName = "数字3", Name = "258", Checked = initChecked, IsAttached = false, Regx = @"\w*?2\D*5\D*8" });
+            Rules.Add(new Rule() { GroupName = "数字3", Name = "369", Checked = initChecked, IsAttached = false, Regx = @"\w*?3\D*6\D*9" });
+            Rules.Add(new Rule() { GroupName = "数字3", Name = "521", Checked = initChecked, IsAttached = false, Regx = @"\w*?5\D*2\D*1" });
 
             List<Rule> att1 = new List<Rule>();
             att1.Add(new Rule() { GroupName = "对子", Name = "含6", Checked = initChecked, IsAttached = true, Regx = "6" });
@@ -89,7 +86,11 @@ namespace DataFilter.Entity
             Rules.Add(new Rule() { GroupName = "字母", Name = "ABA格式字母", Checked = initChecked, IsAttached = false, Regx = @"\w*(\D)\w*\1" });
         }
         public string Name { get; set; }
-        public bool Checked { get; set; }
+        public bool Checked
+        {
+            get;
+            set;
+        }
         public string Regx { get; set; }
         public string GroupName { get; set; }
         public List<Rule> Children { get; set; }

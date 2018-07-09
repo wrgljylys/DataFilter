@@ -25,6 +25,8 @@ namespace DataFilter
     /// </summary>
     public partial class MainWindow : Window
     {
+        private DateTime startTime;
+        private DateTime filterTime;
         private List<string> dataList;
         private List<string> redList;
         private List<string> blueList;
@@ -53,7 +55,7 @@ namespace DataFilter
             foreach (GroupBox gb in sp.Children)
             {
                 gb.DataContext = (from rule in rules
-                                 where rule.GroupName == gb.Header.ToString()
+                                 where rule.GroupName == gb.Tag.ToString()
                                  select rule).ToList(); 
             }
 
@@ -82,10 +84,12 @@ namespace DataFilter
             dgLog.ItemsSource = logInfoList;
 
             Log(LogType.导入, fileName, dataList.Count, 0, 0);
+            btnFilt_Click(null, null);
         }
 
         private void btnFilt_Click(object sender, RoutedEventArgs e)
         {
+            startTime = DateTime.Now;
             threadList = new List<MythreadData>();
 
             if (cbNo4Only.IsChecked == true)
@@ -102,7 +106,31 @@ namespace DataFilter
                 threadList.Add(thread);
                 Log(LogType.线程启动, "线程：" + i, dataList.Count, 0, thread.BlueList.Count);
                 thread.Worker.RunWorkerAsync(thread);
+                thread.Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Worker_RunWorkerCompleted);
                 count += thread.BlueList.Count;
+            }
+        }
+
+        void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            bool completed = true;
+            if (threadList != null)
+            {
+                foreach (MythreadData thread in threadList)
+                {
+                    if (thread.Worker.IsBusy)
+                    {
+                        completed = false;
+                        break;
+                    }
+                }
+            }
+            if (completed)
+            {
+                filterTime = DateTime.Now;
+                TimeSpan span = (filterTime - startTime);
+                tbTime.Text = string.Format("筛选完成！ 用时：{0}秒", span.TotalSeconds);
+                btnExport_Click(null, null);
             }
         }
 
@@ -290,6 +318,38 @@ namespace DataFilter
         public void Log(LogType logType, string message, int dataCount, int redCount, int blueCount)
         {
             logInfoList.Add(new LogInfo() { Time = DateTime.Now, LogType = logType, Message = message, DataCount = dataCount, RedCount = redCount, BlueCount = blueCount });
+        }
+
+        private void cbAllSelect_Checked(object sender, RoutedEventArgs e)
+        {
+            foreach(Rule rule in Rule.Rules)
+            {
+                rule.Checked = true;
+            }
+            List<Rule> rules = Rule.Rules;
+            StackPanel sp = expander.Content as StackPanel;
+            foreach (GroupBox gb in sp.Children)
+            {
+                gb.DataContext = (from rule in rules
+                                  where rule.GroupName == gb.Tag.ToString()
+                                  select rule).ToList();
+            }
+        }
+
+        private void cbAllSelect_Unchecked(object sender, RoutedEventArgs e)
+        {
+            foreach (Rule rule in Rule.Rules)
+            {
+                rule.Checked = false;
+            }
+            List<Rule> rules = Rule.Rules;
+            StackPanel sp = expander.Content as StackPanel;
+            foreach (GroupBox gb in sp.Children)
+            {
+                gb.DataContext = (from rule in rules
+                                  where rule.GroupName == gb.Tag.ToString()
+                                  select rule).ToList();
+            }
         }
     }
 }
