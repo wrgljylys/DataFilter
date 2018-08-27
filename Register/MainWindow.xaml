@@ -1,0 +1,30 @@
+﻿<Window x:Class="Register.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="400" Width="600">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Mac地址:" TextAlignment="Right" VerticalAlignment="Center" FontSize="18"></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="到期时间:" TextAlignment="Right" VerticalAlignment="Center" FontSize="18"></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="注册码:" TextAlignment="Right" VerticalAlignment="Center" FontSize="18"></TextBlock>
+
+        <TextBox Name="tbMac" Grid.Row="1" Grid.Column="1" Width="200" Height="50" TextAlignment="Left" VerticalContentAlignment="Center" FontSize="16"></TextBox>
+        <DatePicker Name="dpDate" Grid.Row="2" Grid.Column="1" Width="200" Height="50" VerticalContentAlignment="Center"></DatePicker>
+        <TextBox Name="tbRegCode" Grid.Row="3" Grid.Column="1" Width="240" Height="50" TextAlignment="Left" VerticalContentAlignment="Center" FontSize="12" IsReadOnly="True"></TextBox>
+
+        <Button Name="btnLoaclMac" Grid.Row="1" Grid.Column="2" Width="120" Height="50" Content="使用本机Mac" Click="btnLoaclMac_Click"></Button>
+        <Button Name="btnCreate" Grid.Row="2" Grid.Column="2" Width="120" Height="50" Content="生成注册码" Click="btnCreate_Click"></Button>
+        <Button Name="btnWriteFile" Grid.Row="3" Grid.Column="2" Width="120" Height="50" Content="写入注册文件" Click="btnWriteFile_Click"></Button>
+    </Grid>
+</Window>

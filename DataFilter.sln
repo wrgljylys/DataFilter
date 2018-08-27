@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataFilter", "DataFilter\DataFilter.csproj", "{42CF753B-DAD8-4606-89BA-7F27C2D1999E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Register", "Register\Register.csproj", "{0B7516B8-8D22-4A2D-9135-C8764C97B755}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{42CF753B-DAD8-4606-89BA-7F27C2D1999E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42CF753B-DAD8-4606-89BA-7F27C2D1999E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42CF753B-DAD8-4606-89BA-7F27C2D1999E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B7516B8-8D22-4A2D-9135-C8764C97B755}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B7516B8-8D22-4A2D-9135-C8764C97B755}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B7516B8-8D22-4A2D-9135-C8764C97B755}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B7516B8-8D22-4A2D-9135-C8764C97B755}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
