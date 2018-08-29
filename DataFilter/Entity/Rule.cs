@@ -59,16 +59,16 @@ namespace DataFilter.Entity
             att2.Add(new Rule() { GroupName = "ABA格式", Name = "含8", Checked = initChecked, IsAttached = true, Regx = "8" });
             att2.Add(new Rule() { GroupName = "ABA格式", Name = "含9", Checked = initChecked, IsAttached = true, Regx = "9" });
             att2.Add(new Rule() { GroupName = "ABA格式", Name = "含0", Checked = initChecked, IsAttached = true, Regx = "0" });
-            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "0*0", Checked = initChecked, IsAttached = false, Regx = @"\w*?0\w*?0", Children = att2 });
-            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "1*1", Checked = initChecked, IsAttached = false, Regx = @"\w*?1\w*?1", Children = att2 });
-            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "2*2", Checked = initChecked, IsAttached = false, Regx = @"\w*?2\w*?2", Children = att2 });
-            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "3*3", Checked = initChecked, IsAttached = false, Regx = @"\w*?3\w*?3", Children = att2 });
-            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "4*4", Checked = initChecked, IsAttached = false, Regx = @"\w*?4\w*?4", Children = att2 });
-            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "5*5", Checked = initChecked, IsAttached = false, Regx = @"\w*?5\w*?5", Children = att2 });
-            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "6*6", Checked = initChecked, IsAttached = false, Regx = @"\w*?6\w*?6", Children = att2 });
-            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "7*7", Checked = initChecked, IsAttached = false, Regx = @"\w*?7\w*?7", Children = att2 });
-            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "8*8", Checked = initChecked, IsAttached = false, Regx = @"\w*?8\w*?8", Children = att2 });
-            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "9*9", Checked = initChecked, IsAttached = false, Regx = @"\w*?9\w*?9", Children = att2 });
+            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "0*0", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?0\w*?0|\w*?0\w*?{1}\w*?0|\w*?0\w*?0\w*?{2}", Children = att2 });
+            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "1*1", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?1\w*?1|\w*?1\w*?{1}\w*?1|\w*?1\w*?1\w*?{2}", Children = att2 });
+            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "2*2", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?2\w*?2|\w*?2\w*?{1}\w*?2|\w*?2\w*?2\w*?{2}", Children = att2 });
+            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "3*3", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?3\w*?3|\w*?3\w*?{1}\w*?3|\w*?3\w*?3\w*?{2}", Children = att2 });
+            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "4*4", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?4\w*?4|\w*?4\w*?{1}\w*?4|\w*?4\w*?4\w*?{2}", Children = att2 });
+            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "5*5", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?5\w*?5|\w*?5\w*?{1}\w*?5|\w*?5\w*?5\w*?{2}", Children = att2 });
+            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "6*6", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?6\w*?6|\w*?6\w*?{1}\w*?6|\w*?6\w*?6\w*?{2}", Children = att2 });
+            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "7*7", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?7\w*?7|\w*?7\w*?{1}\w*?7|\w*?7\w*?7\w*?{2}", Children = att2 });
+            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "8*8", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?8\w*?8|\w*?8\w*?{1}\w*?8|\w*?8\w*?8\w*?{2}", Children = att2 });
+            Rules.Add(new Rule() { GroupName = "ABA格式", Name = "9*9", Checked = initChecked, IsAttached = false, Regx = @"\w*?{0}\w*?9\w*?9|\w*?9\w*?{1}\w*?9|\w*?9\w*?9\w*?{2}", Children = att2 });
             Rules.AddRange(att2);
 
             Rules.Add(new Rule() { GroupName = "特定格式", Name = "6*8", Checked = initChecked, IsAttached = false, Regx = @"\w*?6\w*?8" });

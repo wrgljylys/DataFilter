@@ -133,7 +133,11 @@ namespace DataFilter
                             {
                                 sb.Append(r.Regx);
                             }
-                            else if (data.IndexOf(r.Regx) > 0)
+                        }
+
+                        foreach(Rule r in children)
+                        {
+                            if (data.IndexOf(r.Regx) > 0)
                             {
                                 attPass = true;
                                 break;
@@ -141,12 +145,13 @@ namespace DataFilter
                             else
                                 attPass = false;
                         }
+
                         sb.Append("]");
                         if (sb.Length <= 2)
                             sb = new StringBuilder();
                         if (needFormat)
                         {
-                            rex = string.Format(rule.Regx, sb, sb);
+                            rex = string.Format(rule.Regx, sb, sb, sb);
                         }
                     }
 

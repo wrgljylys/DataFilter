@@ -138,7 +138,7 @@
             <Button Name="btnExport" Click="btnExport_Click" Content="导出" Width="100" Height="25" Margin="5,0"></Button>
             <TextBlock Name="tbTime" Width="150" Height="25" Margin="5,0" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
-        <GroupBox  BorderThickness="0" Header="过程日志" Height="400">
+        <GroupBox  BorderThickness="0" Header="过程日志" Height="380">
             <DataGrid Name="dgLog" AutoGenerateColumns="False" CanUserAddRows="False" VerticalScrollBarVisibility="Auto">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="时间" IsReadOnly="True" Binding="{Binding Path=Time, StringFormat=HH:mm:ss}"></DataGridTextColumn>

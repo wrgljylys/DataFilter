@@ -49,7 +49,7 @@ namespace DataFilter
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        { 
+        {
             List<Rule> rules = Rule.Rules;
             StackPanel sp = expander.Content as StackPanel;
             foreach (GroupBox gb in sp.Children)
