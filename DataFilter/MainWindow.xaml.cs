@@ -131,7 +131,7 @@ namespace DataFilter
             {
                 filterTime = DateTime.Now;
                 TimeSpan span = (filterTime - startTime);
-                tbTime.Text = string.Format("筛选完成！ 用时：{0}秒", span.TotalSeconds);
+                tbTime.Text = string.Format("筛选完成！ 用时：{0}秒", span.TotalSeconds.ToString("0.00"));
                 btnExport_Click(null, null);
             }
         }
