@@ -59,6 +59,8 @@ namespace DataFilter
                                  select rule).ToList(); 
             }
 
+            Title = "数据筛选工具            （使用期限至" + (App.Current as App).Date.ToString("yyyy-MM-dd") + "）";
+
             /*
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < 9; i++)

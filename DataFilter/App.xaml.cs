@@ -16,6 +16,7 @@ namespace DataFilter
     /// </summary>
     public partial class App : Application
     {
+        public DateTime Date { get; set; }
         public App()
         {
             this.Startup += App_Startup;
@@ -70,7 +71,8 @@ namespace DataFilter
                         Shutdown();
                         return;
                     }
-                    MessageBox.Show(date.ToString("yyyy_MM_dd"));  
+
+                    Date = date;
                 }
             }
             catch (Exception ex)
