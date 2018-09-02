@@ -65,23 +65,23 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\..\dll\ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>C:\Users\lenovo\Desktop\PCClient\dll\ICSharpCode.SharpZipLib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NPOI, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\..\dll\NPOI.dll</HintPath>
+      <HintPath>C:\Users\lenovo\Desktop\PCClient\dll\NPOI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NPOI.OOXML, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\..\dll\NPOI.OOXML.dll</HintPath>
+      <HintPath>C:\Users\lenovo\Desktop\PCClient\dll\NPOI.OOXML.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\..\dll\NPOI.OpenXml4Net.dll</HintPath>
+      <HintPath>C:\Users\lenovo\Desktop\PCClient\dll\NPOI.OpenXml4Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="NPOI.OpenXmlFormats, Version=2.3.0.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <HintPath>..\..\dll\NPOI.OpenXmlFormats.dll</HintPath>
+      <HintPath>C:\Users\lenovo\Desktop\PCClient\dll\NPOI.OpenXmlFormats.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
