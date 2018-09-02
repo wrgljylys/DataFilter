@@ -112,6 +112,10 @@ namespace DataFilter
                     if (isNo4 && data.IndexOf('4') >= 0)
                         continue;
 
+                    if (rule.Checked && rule == Rule.End689)
+                    {
+                    }
+
                     bool attPass = true;
                     string rex = rule.Regx;
 
