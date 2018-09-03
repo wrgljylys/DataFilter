@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace DataFilter
 {
@@ -112,8 +113,26 @@ namespace DataFilter
                     if (isNo4 && data.IndexOf('4') >= 0)
                         continue;
 
-                    if (rule.Checked && rule == Rule.End689)
+                    if (Rule.End689.Checked)
                     {
+                        if (data.EndsWith("36") || data.EndsWith("38") || data.EndsWith("39"))
+                        {
+                            string subString = data.Substring(0, data.Length - 1);
+                            bool gotoBlue = true;
+                            foreach (Rule endRule in Rule.End689Rules)
+                            {
+                                if (Regex.IsMatch(subString, endRule.Regx, RegexOptions.IgnoreCase))
+                                {
+                                    gotoBlue = false;
+                                    break;
+                                }
+                            }
+
+                            if (gotoBlue)
+                            {
+                                continue;
+                            }
+                        }
                     }
 
                     bool attPass = true;
@@ -198,6 +217,7 @@ namespace DataFilter
 
                 Window.Dispatcher.Invoke(new Action(() =>
                 {
+                    if (rule != Rule.End689)
                     Window.Log(LogType.筛选, "线程" + Seq + ": " + rule.Name, count, RedList.Count, BlueList.Count);
                 }));
             }

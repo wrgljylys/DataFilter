@@ -13,6 +13,9 @@ namespace DataFilter.Entity
         public static Rule No4;
         public static Rule End689;
         private const bool initChecked = false;
+
+        public static List<Rule> End689Rules;
+
         static Rule()
         {
             CheckedProperty = DependencyProperty.Register("Checked1", typeof(bool), typeof(Rule));
@@ -95,6 +98,13 @@ namespace DataFilter.Entity
             Rules.Add(new Rule() { GroupName = "字母", Name = "双字母", Checked = initChecked, IsAttached = false, Regx = @"\w*?A\d*A|\w*?B\d*B|\w*?C\d*C|\w*?D\d*D|\w*?E\d*E|\w*?F\d*F|\w*?G\d*G|\w*?H\d*H|\w*?I\d*I|\w*?J\d*J|\w*?K\d*K|\w*?L\d*L|\w*?M\d*M|\w*?N\d*N|\w*?O\d*O|\w*?P\d*P|\w*?Q\d*Q|\w*?R\d*R|\w*?S\d*S|\w*?T\d*T|\w*?U\d*U|\w*?V\d*V|\w*?W\d*W|\w*?X\d*X|\w*?Y\d*Y|\w*?Z\d*Z" });
             Rules.Add(new Rule() { GroupName = "字母", Name = "字母顺子", Checked = initChecked, IsAttached = false, Regx = @"\w*?ABC|\w*?BCD|\w*?CDE|\w*?DEF|\w*?EFG|\w*?FGH|\w*?GHI|\w*?HIJ|\w*?IJK|\w*?JKL|\w*?KLM|\w*?LMN|\w*?MNO|\w*?NOP|\w*?OPQ|\w*?PQR|\w*?QRS|\w*?RST|\w*?STU|\w*?TUV|\w*?UVW|\w*?VWX|\w*?WXY|\w*?XYZ" });
             Rules.Add(new Rule() { GroupName = "字母", Name = "ABA格式字母", Checked = initChecked, IsAttached = false, Regx = @"\w*(\D)\w*\1" });
+
+            End689Rules = new List<Rule>();
+            End689Rules.Add(new Rule() { GroupName = "End689Rules", Name = "字母对子ABA格式", Checked = true, IsAttached = false, Regx = @"\w*(\D)\w*\1" });
+            End689Rules.Add(new Rule() { GroupName = "End689Rules", Name = "数字对子ABA格式", Checked = true, IsAttached = false, Regx = @"\w*(\d)\w*\1" });
+            End689Rules.Add(new Rule() { GroupName = "End689Rules", Name = "字母顺子", Checked = initChecked, IsAttached = false, Regx = @"\w*?ABC|\w*?BCD|\w*?CDE|\w*?DEF|\w*?EFG|\w*?FGH|\w*?GHI|\w*?HIJ|\w*?IJK|\w*?JKL|\w*?KLM|\w*?LMN|\w*?MNO|\w*?NOP|\w*?OPQ|\w*?PQR|\w*?QRS|\w*?RST|\w*?STU|\w*?TUV|\w*?UVW|\w*?VWX|\w*?WXY|\w*?XYZ" });
+            End689Rules.Add(new Rule() { GroupName = "End689Rules", Name = "数字顺子", Checked = initChecked, IsAttached = false, Regx = @"\w*?1\D*2\D*3|\w*?2\D*3\D*4|\w*?3\D*4\D*5|\w*?4\D*5\D*6|\w*?5\D*6\D*7|\w*?6\D*7\D*8|\w*?7\D*8\D*9" });
+            End689Rules.Add(new Rule() { GroupName = "End689Rules", Name = "数字倒顺子", Checked = initChecked, IsAttached = false, Regx = @"\w*?9\D*8\D*7|\w*?8\D*7\D*6|\w*?7\D*6\D*5|\w*?6\D*5\D*4|\w*?5\D*4\D*3|\w*?4\D*3\D*2|\w*?3\D*2\D*1" });
         }
         public string Name { get; set; }
         public bool Checked

@@ -21,7 +21,7 @@ namespace Register
 
         void App_Startup(object sender, StartupEventArgs e)
         {
-            DateTime dt = new DateTime(2018, 9, 7);
+            DateTime dt = new DateTime(2018, 9, 10);
             if (DateTime.Now > dt)
             {
                 Shutdown();
