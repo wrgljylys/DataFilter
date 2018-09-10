@@ -180,8 +180,8 @@ namespace DataFilter
 
                     if (rule.Name == "数字双对前小后大")
                     {
-                        if (Regex.IsMatch(data, @"\w*?(\d)\D*[0]\w*?\1\D*[1]|\w*?(\d)\D*[1]\w*?\2\D*[2]|\w*?(\d)\D*[2]\w*?\3\D*[3]|\w*?(\d)\D*[3]\w*?\4\D*[4]|\w*?(\d)\D*[4]\w*?\5\D*[5]|\w*?(\d)\D*[5]\w*?\6\D*?[6]|\w*?(\d)\D*[6]\w*?\7\D*[7]|\w*?(\d)\D*[7]\w*?\8\D*[8]|\w*?(\d)\D*[8]\w*?\9\D*[9]", RegexOptions.IgnoreCase)
-                            || Regex.IsMatch(data, @"\w*?[0]\D*(\d)\w*?[1]\D*\1|\w*?[1]\D*(\d)\w*?[2]\D*\2|\w*?[2]\D*(\d)\w*?[3]\D*\3|\w*?[3]\D*(\d)\w*?[4]\D*\4|\w*?[4]\D*(\d)\w*?[5]\D*\5|\w*?[5]\D*(\d)\w*?[6]\D*\6|\w*?[6]\D*(\d)\w*?[7]\D*\7|\w*?[7]\D*(\d)\w*?[8]\D*\8|\w*?[8]\D*(\d)\w*?[9]\D*\9", RegexOptions.IgnoreCase))
+                        if (Regex.IsMatch(data, @"\w*?(\d)\D*[0]\1\D*[1]|\w*?(\d)\D*[1]\2\D*[2]|\w*?(\d)\D*[2]\3\D*[3]|\w*?(\d)\D*[3]\4\D*[4]|\w*?(\d)\D*[4]\5\D*[5]|\w*?(\d)\D*[5]\6\D*?[6]|\w*?(\d)\D*[6]\7\D*[7]|\w*?(\d)\D*[7]\8\D*[8]|\w*?(\d)\D*[8]\9\D*[9]", RegexOptions.IgnoreCase)
+                            || Regex.IsMatch(data, @"\w*?[0]\D*(\d)[1]\D*\1|\w*?[1]\D*(\d)[2]\D*\2|\w*?[2]\D*(\d)[3]\D*\3|\w*?[3]\D*(\d)[4]\D*\4|\w*?[4]\D*(\d)[5]\D*\5|\w*?[5]\D*(\d)[6]\D*\6|\w*?[6]\D*(\d)[7]\D*\7|\w*?[7]\D*(\d)[8]\D*\8|\w*?[8]\D*(\d)[9]\D*\9", RegexOptions.IgnoreCase))
                         {
                             if (!RedList.Contains(data))
                             {
@@ -193,8 +193,8 @@ namespace DataFilter
                     }
                     else if (rule.Name == "数字双对前大后小")
                     {
-                        if (Regex.IsMatch(data, @"\w*?(\d)\D*[9]\w*?\1\D*[8]|\w*?(\d)\D*[8]\w*?\2\D*[7]|\w*?(\d)\D*[7]\w*?\3\D*[6]|\w*?(\d)\D*[6]\w*?\4\D*[5]|\w*?(\d)\D*[5]\w*?\5\D*[4]|\w*?(\d)\D*[4]\w*?\6\D*[3]|\w*?(\d)\D*?[3]\w*?\7\D*[2]|\w*?(\d)\D*[2]\w*?\8\D*[1]|\w*?(\d)\D*[1]\w*?\9\D*[0]", RegexOptions.IgnoreCase)
-                            || Regex.IsMatch(data, @"\w*?[9]\D*(\d)\w*?[8]\D*\1|\w*?[8]\D*(\d)\w*?[7]\D*\2|\w*?[7]\D*(\d)\w*?[6]\D*\3|\w*?[6]\D*(\d)\w*?[5]\D*\4|\w*?[5]\D*(\d)\w*?[4]\D*\5|\w*?[4]\D*(\d)\w*?[3]\D*\6|\w*?[3]\D*(\d)\w*?[2]\D*\7|\w*?[2]\D*(\d)\w*?[1]\D*\8|\w*?[1]\D*(\d)\w*?[0]\D*\9", RegexOptions.IgnoreCase))
+                        if (Regex.IsMatch(data, @"\w*?(\d)\D*[9]\1\D*[8]|\w*?(\d)\D*[8]\2\D*[7]|\w*?(\d)\D*[7]\3\D*[6]|\w*?(\d)\D*[6]\4\D*[5]|\w*?(\d)\D*[5]\5\D*[4]|\w*?(\d)\D*[4]\6\D*[3]|\w*?(\d)\D*?[3]\7\D*[2]|\w*?(\d)\D*[2]\8\D*[1]|\w*?(\d)\D*[1]\9\D*[0]", RegexOptions.IgnoreCase)
+                            || Regex.IsMatch(data, @"\w*?[9]\D*(\d)[8]\D*\1|\w*?[8]\D*(\d)[7]\D*\2|\w*?[7]\D*(\d)[6]\D*\3|\w*?[6]\D*(\d)[5]\D*\4|\w*?[5]\D*(\d)[4]\D*\5|\w*?[4]\D*(\d)[3]\D*\6|\w*?[3]\D*(\d)[2]\D*\7|\w*?[2]\D*(\d)[1]\D*\8|\w*?[1]\D*(\d)[0]\D*\9", RegexOptions.IgnoreCase))
                         {
                             if (!RedList.Contains(data))
                             {
