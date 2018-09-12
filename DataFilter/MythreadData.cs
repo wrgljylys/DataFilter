@@ -118,18 +118,25 @@ namespace DataFilter
                         if (data.EndsWith("36") || data.EndsWith("38") || data.EndsWith("39"))
                         {
                             string subString = data.Substring(0, data.Length - 1);
-                            bool gotoBlue = true;
+                            bool stayBlue = true;
                             foreach (Rule endRule in Rule.End689Rules)
                             {
                                 if (Regex.IsMatch(subString, endRule.Regx, RegexOptions.IgnoreCase))
                                 {
-                                    gotoBlue = false;
+                                    stayBlue = false;
                                     break;
                                 }
                             }
 
-                            if (gotoBlue)
+                            if (!stayBlue)
                             {
+                                if (!RedList.Contains(data))
+                                {
+                                    RedList.Add(data);
+                                    ++count;
+                                }
+                                BlueList.Remove(data);
+
                                 continue;
                             }
                         }
