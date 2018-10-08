@@ -21,11 +21,6 @@ namespace Register
 
         void App_Startup(object sender, StartupEventArgs e)
         {
-            DateTime dt = new DateTime(2018, 9, 15);
-            if (DateTime.Now > dt)
-            {
-                Shutdown();
-            }
         }
 
         void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)

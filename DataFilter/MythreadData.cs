@@ -117,8 +117,15 @@ namespace DataFilter
                     {
                         if (data.EndsWith("36") || data.EndsWith("38") || data.EndsWith("39"))
                         {
+                            int count689 = 0;
+                            if (data.Contains('6'))
+                                count689++;
+                            if (data.Contains('8'))
+                                count689++;
+                            if (data.Contains('9'))
+                                count689++;
                             string subString = data.Substring(0, data.Length - 1);
-                            bool stayBlue = true;
+                            bool stayBlue = count689 == 1;
                             foreach (Rule endRule in Rule.End689Rules)
                             {
                                 if (Regex.IsMatch(subString, endRule.Regx, RegexOptions.IgnoreCase))

@@ -26,12 +26,6 @@ namespace DataFilter
 
         void App_Startup(object sender, StartupEventArgs e)
         {
-            DateTime dt = new DateTime(2018, 9, 15);
-            if (DateTime.Now > dt)
-            {
-                Shutdown();
-            }
-
             string filePath = AppDomain.CurrentDomain.BaseDirectory + "\\regData.data";
 
             try
